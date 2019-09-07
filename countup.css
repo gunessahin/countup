@@ -9,11 +9,11 @@
 */
 
 .sayac::before {
-    content: ">"
+    content: ""
 }
 
 .sayac::after {
-    content: "<"
+    content: ""
 }
 
 .sayac {
@@ -22,7 +22,19 @@
     padding: 1%;
     margin: 1%;
     font-size: 30px;
-    background: #5f5b5b;
-    color: white;
-    border-radius: 10px
+    min-width: 100px;
+  
+}
+.sayac {
+    background: #F2F2F2;
+    color: #4C4848;
+    border-radius: 10px;
+    font-weight: bolder;
+    border: dotted 1px #4C4848;
+}
+.container{
+    display: inline-block;
+    width: 60%;
+    margin-right: 20%;
+    margin-left: 20%;
 }
