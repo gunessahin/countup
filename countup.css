@@ -1,0 +1,28 @@
+/*
+    ████████████████████████████████████████████████████████████████████████████████████████████████████
+    * Application: countup v0.0.0.1
+    * https://gunessahin.github.io/
+    ════════════════════════════════════════════════════════════════════════════════════════════════════
+    * Copyright gunessahin@outlook.com.tr
+    * Licence (https://github.com/gunessahin)
+    ████████████████████████████████████████████████████████████████████████████████████████████████████
+*/
+
+.sayac::before {
+    content: ">"
+}
+
+.sayac::after {
+    content: "<"
+}
+
+.sayac {
+    float: left;
+    text-align: center;
+    padding: 1%;
+    margin: 1%;
+    font-size: 30px;
+    background: #5f5b5b;
+    color: white;
+    border-radius: 10px
+}
