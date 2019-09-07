@@ -1,6 +1,6 @@
 # Countup
 
-Belirlenen sayıdan balayarak, belirlenen sayısaya kadar adım adım artan sayac.
+Belirlenen sayıdan başlayarak, belirlenen sayıya kadar adım adım artan sayaç.
 
 ![Countup](media/favicon.png)
 
@@ -33,7 +33,7 @@ Belirlenen sayıdan balayarak, belirlenen sayısaya kadar adım adım artan saya
     <div class="sayac" data-baslangic="1" data-bitis="35" data-adim="1" data-hiz="125"></div>
 
     <!-- Kutuphane -->
-    <link type="stylesheet" href="countup.css">
+    <link rel="stylesheet" href="countup.css">
     <script type="text/javascript" src="countup.js"></script>
 
 </body>
