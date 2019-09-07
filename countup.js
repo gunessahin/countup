@@ -19,7 +19,7 @@
   for (var index = 0; index < toplamOzellik; index++) {
 
     // her ozelligin html elementi
-    var element = sayaclar[index];
+    var element = sayaclar[index]
 
     // Data özellikleri alındı
     var baslangic = parseInt(element.attributes.getNamedItem('data-baslangic').value)
@@ -40,11 +40,12 @@
 
     // Sayaıcı yukarı doğru yönlendirir
     function sayici() {
-      index += adim
-      ekranayaz(index)
 
-      if (index < bitis)
+      if (index <= bitis){
+        ekranayaz(index)
         setTimeout(sayici, hiz)
+        index += adim
+      }        
     }
 
     // Ekrana parametreyi yazar
