@@ -10,6 +10,17 @@
 
 (function () {
 
+  /**
+ * Number.prototype.format(n, x)
+ * 
+ * @param integer n: length of decimal
+ * @param integer x: length of sections
+ */
+  Number.prototype.format = function (n, x) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+    return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+  }
+
   // Bir html elementinin sayfa üzerinde görünümü izler
   var GorunumDinleyici = function (element, callback) {
     this._el = element
@@ -102,27 +113,41 @@
   // Sayacı başlatır
   function calistir(element) {
 
+    // Default özellikler
+    var baslangic = 0
+    var bitis = 1
+    var adim = 1
+    var hiz = 1
+    var bicim = 'false'
+    var textBefore = ''
+    var textAfter = ''
+
     // Data özellikleri alındı
-    var baslangic = parseInt(element.attributes.getNamedItem('data-baslangic').value)
-    var bitis = parseInt(element.attributes.getNamedItem('data-bitis').value)
-    var adim = parseInt(element.attributes.getNamedItem('data-adim').value)
-    var hiz = parseInt(element.attributes.getNamedItem('data-hiz').value)
+    baslangic = element.attributes.getNamedItem('data-baslangic') === null ? baslangic : parseInt(element.attributes.getNamedItem('data-baslangic').value)
+    bitis = element.attributes.getNamedItem('data-bitis') === null ? bitis : parseInt(element.attributes.getNamedItem('data-bitis').value)
+    adim = element.attributes.getNamedItem('data-adim') === null ? adim : parseInt(element.attributes.getNamedItem('data-adim').value)
+    hiz = element.attributes.getNamedItem('data-hiz') === null ? hiz : parseInt(element.attributes.getNamedItem('data-hiz').value)
+    bicim = element.attributes.getNamedItem('data-bicim') === null ? bicim : element.attributes.getNamedItem('data-bicim').value
+    textBefore = element.attributes.getNamedItem('data-text-before') === null ? textBefore : element.attributes.getNamedItem('data-text-before').value
+    textAfter = element.attributes.getNamedItem('data-text-after') === null ? textAfter : element.attributes.getNamedItem('data-text-after').value
 
     // İşlemleri başlat
-    yazdir(baslangic, bitis, adim, hiz, element)
+    yazdir(baslangic, bitis, adim, hiz, bicim, textBefore, textAfter, element)
   }
 
   // İşlemleri Başlatır
-  function yazdir(baslangic, bitis, adim, hiz, element) {
+  function yazdir(baslangic, bitis, adim, hiz, bicim, textBefore, textAfter, element) {
 
     // Başlangıç indexi
     var index = baslangic
 
     // Sayaıcı yukarı doğru yönlendirir
     function sayici() {
-
+      var number = index
       if (index <= bitis) {
-        ekranayaz(index)
+        number = bicim == 'true' ? index.format() : index
+        number = textBefore + number + textAfter
+        ekranayaz(number)
         setTimeout(sayici, hiz)
         index += adim
       }
